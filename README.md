@@ -1,5 +1,5 @@
 #  SSC platform
-
+rudrassc.com
 Student task and study-management system for Rudra SSC workflows.
 
 ## What It Does
