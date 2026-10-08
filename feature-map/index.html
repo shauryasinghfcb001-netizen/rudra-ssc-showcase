@@ -1,0 +1,141 @@
+<title>Exam Mentorship Platform Map</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{--bg:#f6f5f2;--card:#fff;--fg:#17191c;--mute:#5c6168;--line:#dcdad3;--acc:#c2410c;--acc2:#1d4ed8;--ok:#15803d;--tint:#efece6;--band:#14161a;--bandfg:#f3f1ec;
+--f-d:"Fraunces",Georgia,serif;--f-b:"IBM Plex Sans",system-ui,sans-serif;--f-m:"IBM Plex Mono",ui-monospace,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121417;--card:#1a1d21;--fg:#eceae5;--mute:#9a9ea5;--line:#2c3036;--acc:#fb923c;--acc2:#7aa2ff;--ok:#4ade80;--tint:#20242a;--band:#0a0b0d;--bandfg:#f3f1ec;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#121417;--card:#1a1d21;--fg:#eceae5;--mute:#9a9ea5;--line:#2c3036;--acc:#fb923c;--acc2:#7aa2ff;--ok:#4ade80;--tint:#20242a;--band:#0a0b0d;--bandfg:#f3f1ec;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:15px/1.55 var(--f-b);padding-inline:16px}
+.w{max-width:1040px;margin:0 auto;padding-block:0 56px}
+.hero{background:var(--band);color:var(--bandfg);margin-inline:-16px;padding:40px 16px 32px}
+.hero .in{max-width:1040px;margin:0 auto}
+.k{font:500 11px var(--f-m);letter-spacing:.14em;text-transform:uppercase;color:var(--acc)}
+h1{font:600 clamp(28px,5vw,46px)/1.1 var(--f-d);margin:8px 0 10px;text-wrap:balance}
+.hero p{max-width:62ch;color:#c9c6bf;margin:0}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:0;margin-top:26px;border-top:1px solid #33373d}
+.stats div{padding:14px 12px 0 0}
+.stats b{display:block;font:500 26px var(--f-m);font-variant-numeric:tabular-nums;color:#fff}
+.stats span{font-size:12px;color:#a9a69f}
+h2{font:600 24px var(--f-d);margin:44px 0 6px}
+.sub{color:var(--mute);margin:0 0 18px;max-width:64ch}
+.arch{display:grid;grid-template-columns:1fr 36px 1.25fr 36px 1fr;align-items:stretch;gap:0}
+.col{display:flex;flex-direction:column;gap:10px}
+.node{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:12px 14px}
+.node h4{margin:0 0 4px;font:600 13px var(--f-b)}
+.node p{margin:0;font-size:12.5px;color:var(--mute)}
+.node .f{font:400 11px var(--f-m);color:var(--acc2);display:block;margin-top:6px;overflow-wrap:anywhere}
+.core{border-color:var(--acc);border-width:2px}
+.lab{font:500 11px var(--f-m);letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:2px}
+.arrow{display:flex;align-items:center;justify-content:center;color:var(--mute);font:500 20px var(--f-m)}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.tabs button{font:500 13px var(--f-b);padding:8px 14px;border:1px solid var(--line);background:var(--card);color:var(--fg);border-radius:4px;cursor:pointer}
+.tabs button[aria-pressed=true]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.tabs button:focus-visible{outline:2px solid var(--acc2);outline-offset:2px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px}
+.ft{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:14px}
+.ft h3{margin:0 0 4px;font:600 14.5px var(--f-b)}
+.ft p{margin:0;font-size:13px;color:var(--mute)}
+.tag{display:inline-block;margin-top:8px;font:500 10.5px var(--f-m);letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:3px;background:var(--tint);color:var(--mute);margin-right:4px}
+.tag.ok{color:var(--ok)}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:6px;background:var(--card)}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:13px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:500 11px var(--f-m);letter-spacing:.08em;text-transform:uppercase;color:var(--mute);background:var(--tint)}
+td.m{font:400 12px var(--f-m);color:var(--acc2)}
+tr:last-child td{border-bottom:0}
+.note{margin-top:30px;padding:14px 16px;border:1px dashed var(--line);border-radius:6px;font-size:13px;color:var(--mute)}
+@media(max-width:720px){.arch{grid-template-columns:1fr}.arrow{transform:rotate(90deg);height:28px}}
+</style>
+<div class="hero"><div class="in">
+<div class="k">Exam mentorship platform · architecture and features</div>
+<h1>Features and how the system connects</h1>
+<p>A public site, a student portal and a mentor admin panel, all running on one database with row-level security.</p>
+<div class="stats">
+<div><b>3</b><span>apps: site, student, admin</span></div>
+<div><b>27</b><span>database tables</span></div>
+<div><b>~75</b><span>security policies (RLS)</span></div>
+<div><b>9</b><span>database migrations</span></div>
+<div><b>33</b><span>features across 5 areas</span></div>
+<div><b>~34.6k</b><span>lines of source</span></div>
+</div></div></div>
+<div class="w">
+
+<h2>How it is connected</h2>
+<p class="sub">Three front-ends talk to one Supabase backend. Students are created by a server function that generates their ID and password. Payments go out through Razorpay links, leads go to WhatsApp.</p>
+<div class="arch">
+ <div class="col"><div class="lab">Front-ends</div>
+  <div class="node"><h4>Public landing site</h4><p>React 18, pricing, inquiry form, WhatsApp button.</p><span class="f">src/landing/app.jsx</span></div>
+  <div class="node"><h4>Student portal</h4><p>Dashboard, learning path, tasks, tests, results.</p><span class="f">student/ · src/app.js</span></div>
+  <div class="node"><h4>Admin / mentor panel</h4><p>Students, plans, tests, leads, revenue.</p><span class="f">admin/ · src/app.js</span></div>
+ </div>
+ <div class="arrow">⇄</div>
+ <div class="col"><div class="lab">Backend (Supabase)</div>
+  <div class="node core"><h4>Postgres database</h4><p>27 tables: students, batches, tasks, tests, attempts, content, leads, payments. About 75 row-level security rules keep each student to their own data.</p><span class="f">supabase/migrations/001…009</span></div>
+  <div class="node"><h4>Supabase Auth</h4><p>Student and admin login, including login by student ID or phone alias.</p><span class="f">src/supabaseClient.js</span></div>
+  <div class="node"><h4>Edge function: create-student</h4><p>Admin creates a student, the server makes the account with a generated ID and password.</p><span class="f">supabase/functions/create-student</span></div>
+  <div class="node"><h4>Data layer</h4><p>One module handles all reads and writes.</p><span class="f">src/data/supabaseStore.js (1,740 lines)</span></div>
+ </div>
+ <div class="arrow">⇄</div>
+ <div class="col"><div class="lab">Outside services</div>
+  <div class="node"><h4>Razorpay</h4><p>Payment links for plans and the scholarship test.</p></div>
+  <div class="node"><h4>WhatsApp</h4><p>Lead and inquiry button opens the mentor's chat.</p></div>
+  <div class="node"><h4>Hostinger + Apache</h4><p>Live hosting, deploy packages, URL rules.</p><span class="f">.htaccess</span></div>
+  <div class="node"><h4>Playwright test</h4><p>Smoke test for releases.</p><span class="f">tests/</span></div>
+ </div>
+</div>
+
+<h2>Features</h2>
+<p class="sub">Filter by who uses it.</p>
+<div class="tabs" id="tabs" role="group" aria-label="Filter features"></div>
+<div class="grid" id="grid"></div>
+
+</div>
+<script>
+var F=[
+["Public","Landing page","Hero, plans, pricing and course sections in React.","src/landing/app.jsx"],
+["Public","Inquiry form","Captures leads into the database for the admin to follow up.","admin leads view"],
+["Public","WhatsApp button","One tap opens the mentor's WhatsApp with the lead.","landing + student"],
+["Public","Pricing and payment links","Plan cards with Razorpay checkout links.","src/landing"],
+["Student","Login by ID or phone","Student signs in with the ID or phone the mentor generated.","Supabase Auth"],
+["Student","Dashboard","Today's tasks, progress, points and streaks in one view.","dashboard v2"],
+["Student","Learning path","Step-by-step plan with completion tracking.","learning-path engine"],
+["Student","Daily tasks","Tasks arrive by batch and tier, with resources attached.","task cards"],
+["Student","Daily reading","A daily reading item chosen by the mentor.","Daily reading"],
+["Student","Library","Notes and test links, locked by batch and tier.","Library"],
+["Student","Subject-wise tests","Attempt flow with saved drafts and a result page.","test attempt"],
+["Student","Wrong-question review","After a test, every missed question with the right answer.","results"],
+["Student","Mock and scholarship tests","Standard mock paper and a scholarship test engine.","test/"],
+["Student","Discipline score and points","Daily score from completed tasks, streaks and penalties.","getDisciplineDay"],
+["Student","Payments","View plan and payment status.","Supabase payments"],
+["Student","Certificate","Certificate template ready for use.","delivery/certificate-template.html"],
+["Admin","Create students","Admin adds a student, the system makes the ID and password.","create-student function"],
+["Admin","Batches and tiers","Group students and control what each group sees.","admin sections"],
+["Admin","Course folders","Organise course material into folders.","admin sections"],
+["Admin","Daily plan builder","Build a day plan and send it to one student or many.","plan builder"],
+["Admin","Task edit and delete","Change tasks, attach several resources, fix a day.","admin tasks"],
+["Admin","Test builder","Create, edit and delete tests, with several questions each.","admin tests"],
+["Admin","Bulk question import","Paste a question paper and import it as a test.","bulk import"],
+["Admin","Student detail","One page per student with tasks, tests and history.","student detail"],
+["Admin","Leads tracking","Inquiries and access requests in one list.","leads view"],
+["Admin","Revenue and finance views","Payments and totals for the mentor.","finance view"],
+["Admin","Risk alerts","Rule-based flags for students falling behind.","risk alerts"],
+["Backend","Row-level security","Each student can read only their own data.","~75 policies"],
+["Backend","Server-side student creation","Accounts are created on the server, never in the browser.","Edge Function"],
+["Backend","Migrations","9 versioned database changes that can be replayed.","supabase/migrations"],
+["Ops","Deployment packages","Zip packages for the live Hostinger site.","upload zips"],
+["Ops","Documentation","Setup guide, known limits, QA report.","docs/"],
+["Ops","Automated smoke test","Playwright test of the main flows.","tests/"]
+];
+var cats=["All","Public","Student","Admin","Backend","Ops"],cur="All";
+var tabs=document.getElementById("tabs"),grid=document.getElementById("grid");
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+function draw(){
+ tabs.innerHTML=cats.map(function(c){var n=c=="All"?F.length:F.filter(function(f){return f[0]==c}).length;
+  return '<button type="button" aria-pressed="'+(c==cur)+'" data-c="'+c+'">'+c+' ('+n+')</button>'}).join("");
+ grid.innerHTML=F.filter(function(f){return cur=="All"||f[0]==cur}).map(function(f){
+  return '<div class="ft"><h3>'+esc(f[1])+'</h3><p>'+esc(f[2])+'</p><span class="tag">'+f[0]+'</span><span class="tag ok">Built</span><span class="tag">'+esc(f[3])+'</span></div>'}).join("");
+}
+tabs.addEventListener("click",function(e){var b=e.target.closest("button");if(b){cur=b.dataset.c;draw()}});
+draw();
+</script>
